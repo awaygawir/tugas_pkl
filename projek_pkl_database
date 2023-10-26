@@ -1,0 +1,55 @@
+CREATE DATABASE aplikasi_absen;
+
+CREATE TABLE roles(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(100)
+);
+
+CREATE TABLE kelas(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama_kelas VARCHAR(100),
+    jurusan VARCHAR(100)
+);
+
+CREATE TABLE users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    login varchar(100),
+    username VARCHAR(100),
+    password VARCHAR(100),
+    roles_id INT,
+    FOREIGN KEY(roles_id) REFERENCES roles(id)
+);
+
+CREATE TABLE taruna(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama_taruna VARCHAR(100),
+    jenis_kelamin ENUM('L','P'),
+    alamat TEXT,
+    users_id INT,
+    FOREIGN KEY(users_id) REFERENCES users(id),
+    kelas_id INT,
+    FOREIGN KEY(kelas_id) REFERENCES kelas(id)
+);
+
+CREATE TABLE absen(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    jam_masuk TIME,
+    jam_pulang TIME,
+    status VARCHAR(100),
+    alasan_telat_masuk VARCHAR(100),
+    alasan_pulang_cepat varchar(100),
+    kelas_id INT,
+    FOREIGN KEY(kelas_id) REFERENCES kelas(id),
+    taruna_id INT,
+    FOREIGN KEY(taruna_id) REFERENCES taruna(id),
+    dibuat_pada DATETIME
+);
+ALTER TABLE absen
+ADD bukti_foto VARCHAR(100);
+
+SELECT * FROM roles;
+SELECT * FROM kelas;
+SELECT * FROM users;
+SELECT * FROM taruna;
+SELECT * FROM absen;
+use aplikasi_absen;
