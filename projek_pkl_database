@@ -47,6 +47,12 @@ CREATE TABLE absen(
 ALTER TABLE absen
 ADD bukti_foto VARCHAR(100);
 
+INSERT INTO taruna (nama_taruna, jenis_kelamin, alamat, users_id) VALUES ('Dede', 'L', 'Subang', 1);
+
+INSERT into kelas (nama_kelas,jurusan) VALUES ("XII","Nguseup");
+
+UPDATE taruna set kelas_id = 1;
+
 SELECT * FROM roles;
 SELECT * FROM kelas;
 SELECT * FROM users;
